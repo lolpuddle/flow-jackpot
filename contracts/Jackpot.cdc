@@ -91,7 +91,7 @@ pub contract Jackpot {
     // This is to prevent unfair manipulation in the odds of winning. Eg, if the threshold to trigger the jackpot game is 10
     // Then a malicious actor could bulk submit 10000 NFTs to the pot after the pot has reached 99 entries.
     pub fun bulkSubmit(tokens: [UInt64]) {
-        if self.potThreshold > (tokens.length + self.pot.length) {
+        if self.potThreshold >= (tokens.length + self.pot.length) {
             for token in tokens {
                 Jackpot.submitToJackpot(token)
             }
